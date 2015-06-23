@@ -9,6 +9,3 @@
 /composer.phar
 /vendor/
 /web/bundles/
-/nbproject/
-/composer.lock
-/service/nbproject/private/
