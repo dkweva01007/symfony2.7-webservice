@@ -3,6 +3,7 @@
 namespace DB\ServiceBundle\Controller;
 
 use DB\ServiceBundle\Form\OrganisationType;
+use DB\ServiceBundle\Entity\Organisation;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
@@ -14,7 +15,7 @@ class OrganisationController extends FOSRestController {
     /**
      * @ApiDoc(
      * resource=true,
-     *  description="Get Organisation instance",
+     *  description="Get a Organisation instance",
      *  output = "DB\ServiceBundle\Entity\Organisation",
      *  statusCodes = {
      *     200 = "Returned when successful",
@@ -54,7 +55,9 @@ class OrganisationController extends FOSRestController {
      * @return array Organisation
      * @throws NotFoundHttpException when Orgnisation table is empty
      * 
-     * @return View
+     * @return View()
+     * 
+     * @Rest\View()
      */
     public function getOrganisationsAction() {
         $em = $this->getDoctrine()->getManager();
@@ -75,8 +78,9 @@ class OrganisationController extends FOSRestController {
      *   }
      * )
      * Delete a Organisation
-     * @var integer $id Id of the Organisation
+     * @param integer $id Id of the entity
      * @return View
+     * @throws NotFoundHttpException when Organisation not exist
      * 
      * @Rest\View(statusCode=204)
      */
@@ -93,20 +97,22 @@ class OrganisationController extends FOSRestController {
     /**
      * @ApiDoc(
      * resource=true,
-     *  description="Get Organisation instance",
+     *  description="Put a Organisation instance",
      *  output = "DB\ServiceBundle\Entity\Organisation",
      *  statusCodes = {
      *     200 = "Returned when the request success",
-     *     204 = "Returned when the request fail"
+     *     204 = "Returned when the request fail",
+     *     404 = "Returned when the entity not exist"
      *   }
      * )
      * 
      * Put action
-     * @var Request $request
-     * @var integer $id Id of the entity
+     * @param Request $request
+     * @param integer $id Id of the entity
      * @return View|array
+     * @throws NotFoundHttpException when Organisation not exist
      * 
-     * @Rest\View(DBServiceBundle::getOganisation.html.twig)
+     * @Rest\View(template="DBServiceBundle:Organisation:getOrganisation.html.twig")
      */
     public function putOrganisationAction(Request $request, $id) {
         $em = $this->getDoctrine()->getManager();
@@ -114,6 +120,36 @@ class OrganisationController extends FOSRestController {
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find organisation entity');
         }
+        $form = $this->createForm(new OrganisationType(), $entity);
+        $form->bind($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($entity);
+            $em->flush();
+            return array('entity' => $entity,);
+        }
+    }
+
+    /**
+     * @ApiDoc(
+     * resource=true,
+     *  description="post a Organisation instance",
+     *  output = "DB\ServiceBundle\Entity\Organisation",
+     *  statusCodes = {
+     *     200 = "Returned when the request success",
+     *     204 = "Returned when the request fail",
+     *   }
+     * )
+     * 
+     * Post action
+     * @param Request $request
+     * @return View|array
+     * 
+     * @Rest\View(template="DBServiceBundle:Organisation:getOrganisation.html.twig")
+     */
+    public function postOrganisationAction(Request $request) {
+        $entity = new Organisation();
         $form = $this->createForm(new OrganisationType(), $entity);
         $form->bind($request);
 
