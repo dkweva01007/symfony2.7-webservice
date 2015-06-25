@@ -1,3 +1,7 @@
+db_service:
+    resource: "@DBServiceBundle/Resources/config/routing.yml"
+    prefix:   /
+
 d_bporte:
     resource: "@DBporteBundle/Resources/config/routing.yml"
     prefix:   /platform

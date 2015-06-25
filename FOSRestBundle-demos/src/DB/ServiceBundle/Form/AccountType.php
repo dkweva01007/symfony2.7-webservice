@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class UserType extends AbstractType
+class AccountType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,8 +15,9 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('organisation')
+            ->add('mail')
+            ->add('amount')
+            ->add('limitDate')
         ;
     }
     
@@ -26,7 +27,7 @@ class UserType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'DB\ServiceBundle\Entity\User'
+            'data_class' => 'DB\ServiceBundle\Entity\Account'
         ));
     }
 
@@ -35,6 +36,6 @@ class UserType extends AbstractType
      */
     public function getName()
     {
-        return 'db_servicebundle_user';
+        return '';
     }
 }

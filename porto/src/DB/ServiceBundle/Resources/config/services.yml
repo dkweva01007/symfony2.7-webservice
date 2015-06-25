@@ -1,0 +1,4 @@
+services:
+#    db_service.example:
+#        class: DB\ServiceBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
