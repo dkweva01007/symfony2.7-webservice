@@ -12,119 +12,112 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DBaseController extends Controller {
 
-    public function status_verif(&$account, &$historic) {
-        //vérification de validité de la date du réplicat
-        if (new \DateTime("now") < $historic->getDate()) {
-            //verification du type de transaction
-            if ($historic->getAmount() > 0) {
-                $historic->setActionType("Crédit");
-                //vérification de nouvelle date d'éxpiration du solde
-                if ($account->getLimitDate() < $historic->getDate())
-                    $account->setLimitDate($historic->getDate());
-                //date de validité du réplicat devient date de la transaction
-                $historic->setDate(new \Datetime());
-            }elseif ($historic->getAmount() < 0)
-                $historic->setActionType("Débit");
-            else {
-                $historic->setActionType("Extension de temps");
-                //vérification de nouvelle date d'éxpiration du solde
-                if ($account->getLimitDate() < $historic->getDate())
-                    $account->setLimitDate($historic->getDate());
-                //date de validité du réplicat devient date de la transaction
-                $historic->setDate(new \Datetime());
-                $historic->setAmount(0);
-            }
-            //verification si transaction débit/crédit possible
-            if ($account->getAmount() + $historic->getAmount() >= 0) {
-                $account->setAmount(
-                        $account->getAmount() + $historic->getAmount()
-                );
-                $historic->setAmount(abs($historic->getAmount()));
-                return true;
-            } else
-                return false;
-        }
-        return false;
+    public function getallAction() {
+        //test requet get
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'http://localhost/test4/web/app_dev.php/service/accounts.json');
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/json'));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $response = curl_exec($ch);
+        $users = json_decode($response, true);
+        dump($users);
+        $response = curl_exec($ch);
+        //decript JSON
+        $info = json_decode($response);
+
+        return $this->render('DBporteBundle:Consult:test.html.twig', array(
+                    'entities' => $users['entities']));
     }
 
-    public function viewAction(Request $request, $mail) {
+    public function adduserAction(Request $request) {
 
-        //creation de l'historique
-        $history = new Account_historic();
-        //on devrait sauvegarder dans une session l'ID du site
-        //pour nos site partenaire
-        $history->setWebsiteId(1);
+        //test création user
+        $info = NULL;
+        $ch = curl_init();
+        $user = array();
+        $formBuilder = $this->createFormBuilder();
+        $formBuilder
+                ->add('mail', 'text')
+                ->add('Envoyer', 'submit');
 
-        //permet de trouver l'user via son email
-        $account = $this->getDoctrine()
-                ->getRepository('DBporteBundle:account')
-                ->findOneBymail($mail);
-        //on recupére la clé du compte user pour l'historique
-        $history->setUserId($account->getId());
-        if (!$account) {
-            throw $this->createNotFoundException(
-                    'Cette User n\'existe pas'
-            );
-        } else {
-            //recuperation des historique du compte
-            $listhistoric = $this->getDoctrine()
-                    ->getRepository('DBporteBundle:Account_historic')
-                    ->findByUserId($history->getUserId());
-            //creation du formulaire
-            $formBuilder = $this->get('form.factory')->createBuilder('form', $history);
-            $formBuilder
-                    ->add('amount', 'money', array('currency' => 'EUR', 'precision' => 2))
-                    //date de valité du réplicat
-                    ->add('date', 'date')
-                    ->add('Envoyer', 'submit');
-
-            $form = $formBuilder->getForm();
-            $form->handleRequest($request);
-            //verification que l'envoie est correcté et effectué
-            if ($form->isValid() && $form->isSubmitted() && $this->status_verif($account, $history)) {
-
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($history);
-                $em->flush();
-                $em->persist($account);
-                $em->flush();
-                $request->getSession()->getFlashBag()->add('notice', 'Ajout historique effectué.');
+        $form = $formBuilder->getForm();
+        $form->handleRequest($request);
+        $user = $form->getData();
+        $user = json_encode($user);
+        //verification que l'envoie est correcté et effectué
+        if ($form->isValid() && $form->isSubmitted()) {
+            curl_setopt($ch, CURLOPT_URL, 'http://localhost/test4/web/app_dev.php/service/accounts');
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/json'));
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $user);
+            $response = curl_exec($ch);
+            if (!$response) {
+                throw $this->createNotFoundException(
+                        'Something wrong'
+                );
             }
+            //decript JSON
+            $info = json_decode($response);
 
-            return $this->render('DBporteBundle:Consult:index.html.twig', array(
-                        'user' => $account->getMail(),
-                        'solde' => $account->getAmount(),
-                        'limit_date' => $account->getLimitDate()->format('d/m/Y H:i:s'),
+            return $this->render('DBporteBundle:Consult:test2.html.twig', array(
                         'form' => $form->createView(),
-                        'listhistoric' => $listhistoric,
+                        'info' => $user,
             ));
         }
+        return $this->render('DBporteBundle:Consult:test2.html.twig', array(
+                    'form' => $form->createView(),
+                    'info' => $info,
+        ));
     }
 
-    public function addAction(Request $request) {
-// Création de l'entité
-        $solde = new Solde();
-        $solde->setIdUser('Recherche développeur Symfony2.');
-        $advert->setSolde('Alexandre');
-        $advert->setContent("Nous recherchons un développeur Symfony2 débutant sur Lyon. Blabla…");
-// On peut ne pas définir ni la date ni la publication,
-// car ces attributs sont définis automatiquement dans le constructeur
-// On récupère l'EntityManager
-        $em = $this->getDoctrine()->getManager();
+    //test de modification du compte uttilisateur
+    public function putuserAction(Request $request, $id) {
 
-// Étape 1 : On « persiste » l'entité
-        $em->persist($advert);
+        $ch = curl_init();
+        //recupération info du compte
+        curl_setopt($ch, CURLOPT_URL, 'http://localhost/test4/web/app_dev.php/service/accounts/' . $id . '.json');
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/json'));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $response = curl_exec($ch);
+        $user = json_decode($response, true);
+        //récupération des historique du compte
+        curl_setopt($ch, CURLOPT_URL, 'http://localhost/test4/web/app_dev.php/service/accounthistoric_by_users/' . $id . '.json');
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/json'));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $response = curl_exec($ch);
+        $historic = json_decode($response, true);
+        $formBuilder = $this->createFormBuilder();
+        $formBuilder
+                ->add('amount', 'money', array('currency' => 'EUR', 'precision' => 2))
+                ->add('limitDate', 'datetime')
+                ->add('Envoyer', 'submit');
 
-// Étape 2 : On « flush » tout ce qui a été persisté avant
-        $em->flush();
+        $form = $formBuilder->getForm();
+        $form->handleRequest($request);
 
-// Reste de la méthode qu'on avait déjà écrit
-        if ($request->isMethod('POST')) {
-            $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
-            return $this->redirect($this->generateUrl('oc_platform_view', array('id' => $advert->getId())));
+        //verification que l'envoie est correcté et effectué
+        if ($form->isValid() && $form->isSubmitted()) {
+            $custom = $form->getData();
+            $custom = json_encode($custom);
+            curl_setopt($ch, CURLOPT_URL, 'http://localhost/test4/web/app_dev.php/service/accounts/' . $id . '.json');
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/json'));
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $custom);
+            $response = curl_exec($ch);
+            dump($response);
         }
-
-        return $this->render('OCPlatformBundle:Advert:add.html.twig');
+        if(!isset($historic['entity'])){
+            $historic['entity']=NULL;
+        }
+        return $this->render('DBporteBundle:Consult:test3.html.twig', array(
+                    'user' => $user['entity']['mail'],
+                    'solde' => $user['entity']['amount'],
+                    'limit_date' => $user['entity']['limit_date'],
+                    'form' => $form->createView(),
+                    'listhistoric' => $historic['entity'],
+        ));
     }
 
 }

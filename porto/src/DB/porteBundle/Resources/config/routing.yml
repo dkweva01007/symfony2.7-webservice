@@ -1,22 +1,13 @@
-d_bporte_homepage:
-    path:     /
-    defaults: { _controller: DBporteBundle:Advert:index }
+d_bporte_test_users:
+    path:     /dbase/getall
+    defaults: { _controller: DBporteBundle:DBase:getall }
 
-d_bporte_view:
-    path:     /advert/{id}
-    defaults: { _controller: DBporteBundle:Advert:view }
+d_bporte_test_new_user:
+    path:     /dbase/adduser
+    defaults: { _controller: DBporteBundle:DBase:adduser }
 
-d_bporte_view_DBase:
-    path:     /dbase/{mail}
-    defaults: { _controller: DBporteBundle:DBase:view }
+d_bporte_view_put_user:
+    path:     /dbase/put{id}
+    defaults: { _controller: DBporteBundle:DBase:putuser }
 
-d_bporte_view_slug:
-    path:     /{year}/{slug}.{_format}
-    defaults: { _controller: DBporteBundle:Advert:viewSlug, format: html }
-    requirements:
-        year:   \d{4}
-        format: html|xml
 
-d_bporte_add:
-    path:     /add
-    defaults: { _controller: DBporteBundle:Advert:add }

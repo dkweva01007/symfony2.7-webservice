@@ -6,7 +6,7 @@
         <title>Consultation du compte {{ user }}</title>
     </head>
     <body>
-        <h1>Solde du compte {{ user }} :  {{ solde }}€ ! Date d'expiration : {{ limit_date }}</h1>
+        <h1>Solde du compte {{ user }} :  {{ solde }}€ ! Date d'expiration : {{ limit_date|date('d/m/Y h:m:s') }}</h1>
         <p>
             {{ form(form) }}
         </p>
@@ -20,12 +20,13 @@
             </tr>
             {% for historic in listhistoric %}
                 <tr>
-                    <td>{{ historic.getWebsiteId }}</td>
-                    <td>{{ historic.getAmount }}</td>
-                    <td>{{ historic.getActionType }}</td>
-                    <td>{{ historic.getDate.format('d/m/Y H:i:s') }}</td>
+                    <td>{{ historic.website.name }}</td>
+                    <td>{{ historic.amount }}</td>
+                    <td>{{ historic.action_type }}</td>
+                    <td>{{ historic.date|date('d/m/Y H:i:s') }}</td>
                 </tr>
             {% endfor %}
         </table>
     </body>
 </html>
+ No newline at end of file
