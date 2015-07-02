@@ -1,13 +1,11 @@
-acme_service:
-    type: rest
-    prefix: /api
-    resource: "@AcmeBlogBundle/Resources/config/routes.yml"
+db_service:
+    resource: "@DBServiceBundle/Resources/config/routing.yml"
+    type:     rest
+    prefix:   /service
 
-acme_blog:
-    resource: "@AcmeBlogBundle/Controller/"
-    type:     annotation
-    prefix:   /
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc

@@ -2,6 +2,7 @@
 
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
+use FOS\UserBundle\FOSUserBundle;
 
 class AppKernel extends Kernel {
 
@@ -18,8 +19,8 @@ class AppKernel extends Kernel {
             new FOS\RestBundle\FOSRestBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
-            new AppBundle\AppBundle(),
-            new Acme\BlogBundle\AcmeBlogBundle(),
+            new DB\ServiceBundle\DBServiceBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

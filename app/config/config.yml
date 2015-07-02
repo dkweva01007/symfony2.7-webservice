@@ -78,3 +78,26 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+nelmio_api_doc: ~
+
+sensio_framework_extra:
+    view:
+        annotations: false
+    
+fos_rest:
+    param_fetcher_listener: true
+    body_listener: true
+    format_listener: true
+    view:
+        view_response_listener: 'force'
+    routing_loader:
+        default_format: html
+
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: DB\ServiceBundle\Entity\Website
+    registration:
+        form:
+            type: db_service_registration
