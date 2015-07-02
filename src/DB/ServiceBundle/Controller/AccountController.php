@@ -137,13 +137,18 @@ class AccountController extends FOSRestController {
         //on donne des information à l'historique
         $historic->setUser($old);
         $historic->setAmount($new->getAmount());
-        //website temporaire
+        //recupération entité Website
         $em = $this->getDoctrine()->getManager();
+        $website = $em->getRepository('DBServiceBundle:Website')->find(
+                $request->request->get('website_id')
+                );
+        $historic->setWebsite($website);
+        //website temporaire
+        /*$em = $this->getDoctrine()->getManager();
         $temp = $em->getRepository('DBServiceBundle:Website')->find($id);
-        $historic->setWebsite($temp);
+        $historic->setWebsite($temp);*/
         //fin
         //si date de réplicat périmé
-        dump($new);
         if (new \DateTime("now") < $new->getLimitDate()) {
             //verification si CREDIT
             if ($new->getAmount() > 0) {
