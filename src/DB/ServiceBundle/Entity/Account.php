@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="account")
  * @ORM\Entity
  */
-class Account
-{
+class Account {
+
     /**
      * @var integer
      *
@@ -42,5 +42,82 @@ class Account
      */
     private $limitDate;
 
+    public function setId($id) {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId() {
+        return $this->id;
+    }
+
+    /**
+     * Set mail
+     *
+     * @param string $mail
+     * @return Account
+     */
+    public function setMail($mail) {
+        $this->mail = $mail;
+
+        return $this;
+    }
+
+    /**
+     * Get mail
+     *
+     * @return string 
+     */
+    public function getMail() {
+        return $this->mail;
+    }
+
+    /**
+     * Set amount
+     *
+     * @param float $amount
+     * @return Account
+     */
+    public function setAmount($amount) {
+        $this->amount = $amount;
+
+        return $this;
+    }
+
+    /**
+     * Get amount
+     *
+     * @return float 
+     */
+    public function getAmount() {
+        return $this->amount;
+    }
+
+    /**
+     * Set limitDate
+     *
+     * @param \DateTime $limitDate
+     * @return Account
+     */
+    public function setLimitDate($limitDate) {
+        $this->limitDate = $limitDate;
+
+        return $this;
+    }
+
+    /**
+     * Get limitDate
+     *
+     * @return \DateTime 
+     */
+    public function getLimitDate() {
+        return $this->limitDate;
+    }
 
 }

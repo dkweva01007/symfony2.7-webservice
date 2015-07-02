@@ -152,11 +152,11 @@ class AccountController extends FOSRestController {
                 if ($old->getLimitDate() <= $new->getLimitDate()) {
                     $old->setLimitDate($new->getLimitDate());
                 }
-                //date de validité du réplicat devient date de la transaction
                 $historic->setDate(new \Datetime());
                 //verification si DEBIT
             } elseif ($new->getAmount() < 0) {
                 $historic->setActionType("DEBIT");
+                $historic->setDate(new \Datetime());
                 //verification si TIME EXTEND
             } else {
                 $historic->setActionType("EXTENTION DE TEMPS");
