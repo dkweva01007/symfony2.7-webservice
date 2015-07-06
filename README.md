@@ -1,13 +1,19 @@
 # Webservice #
 
-extension de page possible pour afficher le resultat:
+
+## extension de page possible pour afficher le resultat: ##
+
 * xml
 * json
 
-extension de page à ne pas uttiliser pour afficher le resultat:
+
+## extension de page à ne pas uttiliser pour afficher le resultat: ##
+
 * html : il faut créer un template.
 
-Route notable:
+
+## Route notable: ##
+
  nelmio_api_doc_index              GET      ANY    ANY  /api/doc/{view}
  fos_user_security_login           GET|POST ANY    ANY  /login                                              
  fos_user_security_check           POST     ANY    ANY  /login_check  
