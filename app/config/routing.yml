@@ -1,0 +1,11 @@
+db_service:
+    resource: "@DBServiceBundle/Resources/config/routing.yml"
+    type:     rest
+    prefix:   /service
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc

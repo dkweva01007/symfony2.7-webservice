@@ -1,0 +1,19 @@
+security:
+    encoders:
+      FOS\UserBundle\Model\UserInterface: sha512
+          
+    providers:
+        fos_userbundle:
+            id: fos_user.user_manager
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt|error)|css|images|js)/
+            security: false
+        main:
+            pattern: .*
+            form_login:
+                provider: fos_userbundle
+                always_use_default_target_path: false
+            logout: true
+            anonymous: true
