@@ -1,6 +1,3 @@
-DB_Service_Organisation:
-    type: rest
-    resource: "DB\ServiceBundle\Controller\OrganisationController"
 DB_Service_Website:
     type: rest
     resource: "DB\ServiceBundle\Controller\WebsiteController"
