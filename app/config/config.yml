@@ -95,7 +95,7 @@ fos_rest:
         default_format: json
 
 fos_user:
-    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    db_driver: orm
     firewall_name: main
     user_class: DB\ServiceBundle\Entity\Website
     registration:
