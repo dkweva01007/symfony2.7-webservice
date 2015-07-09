@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "hash": "811ad6d4945006ca3128254fec941256",
+=======
+    "hash": "446f564564db4487e48bcd7e569f1c37",
+>>>>>>> no_security
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -757,18 +761,90 @@
             "time": "2014-12-16 13:45:01"
         },
         {
+<<<<<<< HEAD
             "name": "friendsofsymfony/rest-bundle",
             "version": "1.7.1",
+=======
+            "name": "escapestudios/wsse-authentication-bundle",
+            "version": "dev-master",
+            "target-dir": "Escape/WSSEAuthenticationBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/escapestudios/EscapeWSSEAuthenticationBundle.git",
+                "reference": "013b7d36c46a950c0a4d7f7b3b824ce7f64ea904"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/escapestudios/EscapeWSSEAuthenticationBundle/zipball/013b7d36c46a950c0a4d7f7b3b824ce7f64ea904",
+                "reference": "013b7d36c46a950c0a4d7f7b3b824ce7f64ea904",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/common": "~2.2",
+                "php": ">=5.3.2",
+                "symfony/framework-bundle": "~2.3",
+                "symfony/security-bundle": "~2.3"
+            },
+            "require-dev": {
+                "symfony/finder": "~2.3"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Escape\\WSSEAuthenticationBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "David Joos",
+                    "email": "david@escapestudios.com"
+                },
+                {
+                    "name": "Community contributors",
+                    "homepage": "https://github.com/escapestudios/EscapeWSSEAuthenticationBundle/graphs/contributors"
+                }
+            ],
+            "description": "Symfony2 bundle to implement WSSE authentication",
+            "homepage": "https://github.com/escapestudios/EscapeWSSEAuthenticationBundle",
+            "keywords": [
+                "Authentication",
+                "bundle",
+                "wsse"
+            ],
+            "time": "2015-04-10 17:37:02"
+        },
+        {
+            "name": "friendsofsymfony/rest-bundle",
+            "version": "dev-master",
+>>>>>>> no_security
             "target-dir": "FOS/RestBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSRestBundle.git",
+<<<<<<< HEAD
                 "reference": "3fb2d30c58cde59213dbddd031bc36171b8b68b6"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/3fb2d30c58cde59213dbddd031bc36171b8b68b6",
                 "reference": "3fb2d30c58cde59213dbddd031bc36171b8b68b6",
+=======
+                "reference": "b63307ce86bd1318ea3325bf9fa6a005665191c7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/04393c06818202190e32e2ebf8c74051de8401c5",
+                "reference": "b63307ce86bd1318ea3325bf9fa6a005665191c7",
+>>>>>>> no_security
                 "shasum": ""
             },
             "require": {
@@ -807,7 +883,11 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
+<<<<<<< HEAD
                     "dev-master": "1.7-dev"
+=======
+                    "dev-master": "1.8-dev"
+>>>>>>> no_security
                 }
             },
             "autoload": {
@@ -838,6 +918,7 @@
             "keywords": [
                 "rest"
             ],
+<<<<<<< HEAD
             "time": "2015-06-16 08:39:26"
         },
         {
@@ -853,19 +934,47 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/2022ac8463a8c50dd631f93a17064bd41795fff2",
                 "reference": "2022ac8463a8c50dd631f93a17064bd41795fff2",
+=======
+            "time": "2015-06-23 19:29:00"
+        },
+        {
+            "name": "friendsofsymfony/user-bundle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
+                "reference": "3efbc08a97f218d0a4524dee926fc4381e3d0947"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/3efbc08a97f218d0a4524dee926fc4381e3d0947",
+                "reference": "3efbc08a97f218d0a4524dee926fc4381e3d0947",
+>>>>>>> no_security
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2",
+<<<<<<< HEAD
                 "symfony/framework-bundle": "~2.1",
                 "symfony/security-bundle": "~2.1"
+=======
+                "symfony/form": "~2.3",
+                "symfony/framework-bundle": "~2.3",
+                "symfony/security-bundle": "~2.3",
+                "symfony/twig-bundle": "~2.3"
+>>>>>>> no_security
             },
             "require-dev": {
                 "doctrine/doctrine-bundle": "~1.3",
                 "swiftmailer/swiftmailer": "~4.3|~5",
+<<<<<<< HEAD
                 "symfony/validator": "~2.1",
                 "symfony/yaml": "~2.1",
                 "twig/twig": "~1.5",
+=======
+                "symfony/validator": "~2.3",
+                "symfony/yaml": "~2.3",
+>>>>>>> no_security
                 "willdurand/propel-typehintable-behavior": "~1.0"
             },
             "suggest": {
@@ -878,8 +987,13 @@
                 }
             },
             "autoload": {
+<<<<<<< HEAD
                 "psr-0": {
                     "FOS\\UserBundle": ""
+=======
+                "psr-4": {
+                    "FOS\\UserBundle\\": ""
+>>>>>>> no_security
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -905,7 +1019,11 @@
             "keywords": [
                 "User management"
             ],
+<<<<<<< HEAD
             "time": "2015-06-01 00:57:03"
+=======
+            "time": "2015-06-10 08:27:05"
+>>>>>>> no_security
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -1167,17 +1285,30 @@
         },
         {
             "name": "jms/serializer-bundle",
+<<<<<<< HEAD
             "version": "1.0.0",
+=======
+            "version": "dev-master",
+>>>>>>> no_security
             "target-dir": "JMS/SerializerBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/JMSSerializerBundle.git",
+<<<<<<< HEAD
                 "reference": "0be35615b5bae1ce42567244a321aa1be3ed0280"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/schmittjoh/JMSSerializerBundle/zipball/0be35615b5bae1ce42567244a321aa1be3ed0280",
                 "reference": "0be35615b5bae1ce42567244a321aa1be3ed0280",
+=======
+                "reference": "d0215e9ba257cc43aa54b6525423fb816d779c91"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/schmittjoh/JMSSerializerBundle/zipball/d0215e9ba257cc43aa54b6525423fb816d779c91",
+                "reference": "d0215e9ba257cc43aa54b6525423fb816d779c91",
+>>>>>>> no_security
                 "shasum": ""
             },
             "require": {
@@ -1205,7 +1336,11 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
+<<<<<<< HEAD
                     "dev-master": "0.13-dev"
+=======
+                    "dev-master": "1.1-dev"
+>>>>>>> no_security
                 }
             },
             "autoload": {
@@ -1232,7 +1367,11 @@
                 "serialization",
                 "xml"
             ],
+<<<<<<< HEAD
             "time": "2015-06-23 19:27:08"
+=======
+            "time": "2015-06-25 11:04:52"
+>>>>>>> no_security
         },
         {
             "name": "kriswallsmith/assetic",
@@ -1437,24 +1576,43 @@
         },
         {
             "name": "nelmio/api-doc-bundle",
+<<<<<<< HEAD
             "version": "2.9.0",
+=======
+            "version": "dev-master",
+>>>>>>> no_security
             "target-dir": "Nelmio/ApiDocBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nelmio/NelmioApiDocBundle.git",
+<<<<<<< HEAD
                 "reference": "de31760fd84a45fadbb4fe24db050b5e29ea70d1"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/nelmio/NelmioApiDocBundle/zipball/de31760fd84a45fadbb4fe24db050b5e29ea70d1",
                 "reference": "de31760fd84a45fadbb4fe24db050b5e29ea70d1",
+=======
+                "reference": "7c8b01021522cb429e5127a4c9175efa44a9cb69"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nelmio/NelmioApiDocBundle/zipball/a343bb7c45fb0e9ef1fb3da94befe96fdf55e1f2",
+                "reference": "7c8b01021522cb429e5127a4c9175efa44a9cb69",
+>>>>>>> no_security
                 "shasum": ""
             },
             "require": {
                 "michelf/php-markdown": "~1.4",
+<<<<<<< HEAD
                 "symfony/console": "~2.1",
                 "symfony/framework-bundle": "~2.1",
                 "symfony/twig-bundle": "~2.1"
+=======
+                "symfony/console": "~2.3",
+                "symfony/framework-bundle": "~2.3",
+                "symfony/twig-bundle": "~2.3"
+>>>>>>> no_security
             },
             "conflict": {
                 "jms/serializer": "<0.12",
@@ -1465,12 +1623,23 @@
                 "friendsofsymfony/rest-bundle": "~1.0",
                 "jms/serializer-bundle": ">=0.11",
                 "sensio/framework-extra-bundle": "~3.0",
+<<<<<<< HEAD
                 "symfony/browser-kit": "~2.1",
                 "symfony/css-selector": "~2.1",
                 "symfony/form": "~2.1",
                 "symfony/serializer": "~2.7@dev",
                 "symfony/validator": "~2.1",
                 "symfony/yaml": "~2.1"
+=======
+                "symfony/browser-kit": "~2.3",
+                "symfony/css-selector": "~2.3",
+                "symfony/finder": "~2.3",
+                "symfony/form": "~2.3",
+                "symfony/phpunit-bridge": "~2.7",
+                "symfony/serializer": "~2.7@dev",
+                "symfony/validator": "~2.3",
+                "symfony/yaml": "~2.3"
+>>>>>>> no_security
             },
             "suggest": {
                 "dunglas/api-bundle": "For making use of resources definitions of DunglasApiBundle.",
@@ -1511,7 +1680,11 @@
                 "documentation",
                 "rest"
             ],
+<<<<<<< HEAD
             "time": "2015-05-16 17:16:14"
+=======
+            "time": "2015-06-18 13:30:13"
+>>>>>>> no_security
         },
         {
             "name": "phpcollection/phpcollection",
@@ -2365,7 +2538,17 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
+<<<<<<< HEAD
     "stability-flags": [],
+=======
+    "stability-flags": {
+        "friendsofsymfony/rest-bundle": 20,
+        "jms/serializer-bundle": 20,
+        "nelmio/api-doc-bundle": 20,
+        "escapestudios/wsse-authentication-bundle": 20,
+        "friendsofsymfony/user-bundle": 20
+    },
+>>>>>>> no_security
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

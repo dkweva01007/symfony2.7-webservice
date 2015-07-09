@@ -9,5 +9,10 @@
 /composer.phar
 /vendor/
 /web/bundles/
+<<<<<<< HEAD
 /nbproject/
 /composer.lock
+=======
+/nbproject/private/
+composer.lock
+>>>>>>> no_security
