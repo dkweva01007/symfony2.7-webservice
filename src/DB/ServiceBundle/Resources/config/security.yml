@@ -1,9 +1,6 @@
 security:
-<<<<<<< HEAD
     encoders:
       FOS\UserBundle\Model\UserInterface: sha512
-=======
->>>>>>> no_security
           
     providers:
         fos_userbundle:
@@ -14,15 +11,9 @@ security:
             pattern: ^/(_(profiler|wdt|error)|css|images|js)/
             security: false
         main:
-<<<<<<< HEAD
             pattern: .*
             #form_login:
             #    provider: fos_userbundle
             #   always_use_default_target_path: false
             #logout: true
             anonymous: true
-=======
-            pattern: /
-            logout: true
-            anonymous: true
->>>>>>> no_security

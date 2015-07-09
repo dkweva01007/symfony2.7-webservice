@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 test4
 =====
 
@@ -37,4 +36,3 @@ A Symfony project created on June 23, 2015, 10:18 am.
  15. /service/accounthistoric_by_users/{id}.{_format}    
  16. /service/accounthistorics.{_format}                 
  17. /service/accounthistorics.{_format}
->>>>>>> no_security

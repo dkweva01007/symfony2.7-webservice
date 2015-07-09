@@ -3,11 +3,6 @@
     <type>org.netbeans.modules.php.project</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/php-project/1">
-<<<<<<< HEAD
-            <name>Webservice</name>
-=======
-            <name>Webservice2</name>
->>>>>>> no_security
         </data>
     </configuration>
 </project>
